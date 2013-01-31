@@ -59,7 +59,7 @@ LampCord.prototype.draw_cord = function() {
 	var dx = self.locations[last][0]-self.locations[last-1][0];
 	var dy = self.locations[last][1]-self.locations[last-1][1];
 	var angle = Math.atan(dx / -dy) * 180/Math.PI;
-	if (dx < 0.0) {
+	if (-dy < 0.0) {
 		angle += 180;
 	}
 	self.bulb.attr('transform', 
@@ -102,7 +102,9 @@ window.onload = function() {
     			[500, 200],
 				[400, 300],
 				[500, 400],
-				[400, 500]],
+				[450, 500],
+				[450, 550]
+		        ],
 		movement: {
 			speed: 0.001,
 			damping: 1.0,
