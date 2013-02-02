@@ -91,24 +91,16 @@ LampCord.prototype.draw_cord = function() {
 
 LampCord.prototype.get_path = function(p) {
 	var self = this;
-	var path = "M" + p[0][0] + "," + p[0][1] + "C";
+	var path = "M" + p[0][0] + "," + p[0][1] + "Q";
 	path += p[1][0] + "," + p[1][1] + ",";
-	var i;
-	var last_control = p.length-2;
-	for (i=1; i <= last_control; ++i) {
+	for (var i=1; i<p.length-2; ++i) {
 		path += 
-			p[i][0].toFixed(1) + "," +
-			p[i][1].toFixed(1) + ",";
-		if (i < last_control) {
-			path += 
-				((p[i][0] + p[i+1][0]) / 2).toFixed(1) + "," +
-				((p[i][1] + p[i+1][1]) / 2).toFixed(1) + "S";
-		} else {
-			path += 
-				p[i+1][0].toFixed(1) + "," +
-				p[i+1][1].toFixed(1);
-		}
+			((p[i][0] + p[i+1][0]) / 2).toFixed(1) + "," +
+			((p[i][1] + p[i+1][1]) / 2).toFixed(1) + "T";
 	}
+	path += 
+		p[p.length-1][0].toFixed(1) + "," +
+		p[p.length-1][1].toFixed(1);
 	return path;
 };
 
